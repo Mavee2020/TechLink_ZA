@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechLink - South African IT Freelance Platform</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background: white;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+    }
+
+    nav h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: white;
+    }
+
+    #nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    button {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    button.secondary {
+      background: #95a5a6;
+    }
+
+    button.danger {
+      background: #e74c3c;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #f0f0f0;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      background: #fafafa;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #d1d5db;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.05);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      margin-bottom: 1.5rem;
+      border: 1px solid #f5f5f5;
+    }
+
+    .card h2 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: nowrap;
+      border-bottom: 1px solid #f0f0f0;
+      overflow-x: auto;
+    }
+
+    .tab {
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #9ca3af;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tab.active {
+      color: #667eea;
+      border-bottom-color: #667eea;
+      font-weight: 500;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .job-card, .freelancer-card {
+      cursor: pointer;
+      transition: all 0.3s;
+      border-left: 2px solid #667eea;
+    }
+
+    .job-card:hover, .freelancer-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-left-color: #5568d3;
+    }
+
+    .job-title {
+      font-size: 1.3rem;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-meta {
+      color: #7f8c8d;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .rate {
+      color: #27ae60;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .status-pending { background: #f39c12; color: white; }
+    .status-active { background: #27ae60; color: white; }
+    .status-completed { background: #3498db; color: white; }
+    .status-cancelled { background: #e74c3c; color: white; }
+    .status-interview { background: #9b59b6; color: white; }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      animation: slideIn 0.3s;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .alert-success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      background: #ecf0f1;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      margin: 0.2rem;
+      font-size: 0.85rem;
+      color: #2c3e50;
+    }
+
+    .auth-container {
+      max-width: 500px;
+      margin: 2rem auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    tr:hover {
+      background: #f8f9fa;
+    }
+
+    .currency {
+      color: #27ae60;
+      font-weight: 600;
+    }
+
+    .admin-section {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="container">
+      <a href="index.html" style="text-decoration: none;">
+        <div class="logo-section">
+          <div class="logo">
+            <img src="Logo/TechLink_Logo.jpg" alt="TechLink Logo">
+          </div>
+          <h1>TechLink</h1>
+        </div>
+      </a>
+      <div id="nav-links"></div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div id="app"></div>
+  </main>
+
+  <script src="techlink.js"></script>
+</body>
+</html>

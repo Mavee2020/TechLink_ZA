@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/23928392/README.md)
 # TechLink - South African IT Freelance Platform 🇿🇦
 
 A comprehensive freelance marketplace connecting South African IT specialists with clients for project-based work.
